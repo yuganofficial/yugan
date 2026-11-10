@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="YUGAN — discover useful products across fashion, electronics, home, beauty and more.">
+<title>YUGAN | Smart Finds for Everyday</title>
+<style>
+:root{--ink:#171717;--muted:#737373;--line:#e9e9e9;--soft:#f6f6f4;--accent:#b58b5a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}
+.announcement{background:#171717;color:#fff;text-align:center;padding:9px 12px;font-size:10px;letter-spacing:1.6px}
+header{height:74px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:10}
+.brand{font-size:27px;font-weight:800;letter-spacing:5px}.brand small{display:block;font-size:9px;letter-spacing:2px;color:var(--muted);font-weight:400;margin-top:3px}
+nav{display:flex;gap:25px;font-size:12px}nav a:hover{color:var(--accent)}.headright{display:flex;gap:9px;align-items:center}
+.search{width:180px;border:1px solid var(--line);padding:10px 12px;font-size:12px}.menu{display:none;border:0;background:none;font-size:23px}
+.hero{margin:25px 6% 0;background:var(--soft);display:grid;grid-template-columns:1.05fr .95fr;min-height:360px;overflow:hidden}
+.hero-copy{padding:60px 9%;display:flex;flex-direction:column;justify-content:center}.eyebrow{font-size:10px;letter-spacing:3px;color:#98744e;font-weight:bold}
+h1{font-size:clamp(39px,5vw,62px);letter-spacing:-2px;line-height:1.03;margin:17px 0}.hero p{max-width:420px;color:#666;font-size:14px;line-height:1.8}
+.btn{display:inline-block;background:#171717;color:#fff;padding:15px 23px;font-size:10px;letter-spacing:1.5px;margin-top:16px;width:max-content}.btn:hover{background:#98744e}
+.hero-art{background:linear-gradient(135deg,#e9e1d6,#c8b59d);display:flex;align-items:center;justify-content:center;position:relative}.hero-art:before{content:"Y";font-size:260px;font-weight:800;color:#ffffff55}.hero-art span{position:absolute;bottom:24px;right:25px;font-size:10px;letter-spacing:2px;color:#51483e}
+.wrap{padding:62px 6% 0}.sectionhead{display:flex;align-items:end;justify-content:space-between;margin-bottom:22px}.sectionhead h2{font-size:27px;letter-spacing:-.7px;margin:8px 0}.muted{font-size:12px;color:var(--muted);line-height:1.7}
+.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.category{background:var(--soft);padding:18px 12px;min-height:88px;border:1px solid transparent;cursor:pointer;text-align:left}.category:hover,.category.active{border-color:#171717;background:#fff}.category b{font-size:12px;display:block}.category span{font-size:10px;color:var(--muted);display:block;margin-top:7px}
+.toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin:18px 0}.filters{display:flex;gap:7px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:white;padding:9px 12px;font-size:10px;cursor:pointer}.filter.active,.filter:hover{background:#171717;color:#fff;border-color:#171717}.sort{border:1px solid var(--line);background:white;padding:9px;font-size:11px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{border:1px solid var(--line);min-width:0}.photo{height:205px;background:var(--soft);display:flex;align-items:center;justify-content:center;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover}.photo em{font-style:normal;color:#aaa;font-size:10px;letter-spacing:2px;text-align:center;line-height:2}
+.info{padding:13px}.label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#98744e}.info h3{font-size:14px;margin:7px 0}.info p{font-size:11px;line-height:1.5;color:var(--muted);min-height:32px;margin:0}.price{font-size:13px;font-weight:bold;margin-top:10px}.stores{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.store{border:1px solid #ddd;padding:8px 9px;font-size:9px;font-weight:bold;letter-spacing:.2px}.store:hover{border-color:#171717;background:#171717;color:white}.store.disabled{opacity:.35;cursor:not-allowed}
+.empty{padding:25px;color:var(--muted);font-size:13px;grid-column:1/-1}
+.disclosure{background:var(--soft);margin-top:65px;padding:35px 6%;text-align:center}.disclosure h2{font-size:22px;margin:0 0 10px}.disclosure p{max-width:720px;margin:auto;font-size:11px;line-height:1.8;color:var(--muted)}
+footer{background:#171717;color:white;padding:40px 6% 22px;margin-top:0}.footgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}.footbrand{font-size:24px;font-weight:800;letter-spacing:5px}.footcopy{font-size:11px;color:#aaa;line-height:1.8;max-width:350px}.foottitle{font-size:10px;letter-spacing:2px;margin-bottom:14px}.footlinks{display:grid;gap:10px;font-size:11px;color:#bbb}.footlinks a:hover{color:white}.copyright{border-top:1px solid #444;margin-top:28px;padding-top:17px;color:#888;font-size:10px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(max-width:900px){.categories{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:repeat(3,1fr)}nav{gap:13px}.search{width:135px}}
+@media(max-width:650px){header{height:65px;padding:0 4%}.brand{font-size:23px}nav{display:none;position:absolute;top:65px;left:0;right:0;background:white;padding:20px 6%;border-bottom:1px solid var(--line);flex-direction:column}nav.open{display:flex}.menu{display:block}.search{width:115px;padding:9px}.hero{margin:14px 4% 0;grid-template-columns:1fr}.hero-copy{padding:40px 8%}.hero-art{min-height:175px}.hero-art:before{font-size:130px}.wrap{padding:48px 4% 0}.sectionhead{display:block}.categories{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr);gap:9px}.photo{height:155px}.info{padding:10px}.info h3{font-size:12px}.info p{font-size:10px}.store{padding:7px 8px;font-size:8px}.footgrid{grid-template-columns:1fr 1fr}.footgrid>div:first-child{grid-column:1/-1}.disclosure{margin-top:45px}}
+</style>
+</head>
+<body>
+<div class="announcement">SMART FINDS FOR EVERYDAY &nbsp; · &nbsp; DISCOVER MORE WITH YUGAN</div>
+<header>
+ <a class="brand" href="#home">YUGAN<small>DISCOVER · COMPARE · SHOP</small></a>
+ <nav id="nav"><a href="#home">HOME</a><a href="#categories">CATEGORIES</a><a href="#products">ALL PRODUCTS</a><a href="#about">ABOUT</a></nav>
+ <div class="headright"><input id="search" class="search" type="search" placeholder="Search products..." aria-label="Search products"><button class="menu" id="menu" aria-label="Toggle menu">☰</button></div>
+</header>
+<main>
+<section class="hero" id="home"><div class="hero-copy"><div class="eyebrow">WELCOME TO YUGAN</div><h1>Good finds.<br>Smarter choices.</h1><p>Explore products across fashion, electronics, home, beauty and more — all in one simple place.</p><a class="btn" href="#products">EXPLORE ALL PRODUCTS</a></div><div class="hero-art"><span>EVERYDAY FINDS · ONE PLACE</span></div></section>
+<section class="wrap" id="categories"><div class="sectionhead"><div><div class="eyebrow">FIND WHAT YOU NEED</div><h2>Explore categories</h2></div><div class="muted">Browse across all your favourite departments.</div></div><div class="categories" id="categoryTiles"></div></section>
+<section class="wrap" id="products"><div class="sectionhead"><div><div class="eyebrow">THE YUGAN COLLECTION</div><h2>Explore all products</h2><div class="muted">Compare available stores and choose where to shop.</div></div></div><div class="toolbar"><div class="filters" id="filters"></div><select class="sort" id="sort" aria-label="Sort products"><option value="featured">Featured</option><option value="name">Name: A–Z</option></select></div><div class="grid" id="grid"></div></section>
+<section class="disclosure" id="about"><h2>About YUGAN</h2><p>YUGAN helps you discover products from different categories and compare shopping destinations. Some links may be affiliate links. If you buy through an affiliate link, we may earn a commission at no extra cost to you. Product price, availability, delivery and return terms are controlled by the respective seller.</p></section>
+</main>
+<footer><div class="footgrid"><div><div class="footbrand">YUGAN</div><p class="footcopy">A simple destination to discover useful products across everyday categories.</p><p class="footcopy">Affiliate disclosure: YUGAN may earn from qualifying purchases through affiliate links, at no additional cost to you.</p></div><div><div class="foottitle">DISCOVER</div><div class="footlinks"><a href="#home">Home</a><a href="#categories">Categories</a><a href="#products">All products</a></div></div><div><div class="foottitle">INFORMATION</div><div class="footlinks"><a href="privacy.html">Privacy policy</a><a href="disclaimer.html">Affiliate disclaimer</a><a href="mailto:hello@yugan.in">Contact</a></div></div></div><div class="copyright"><span>© <span id="year"></span> YUGAN. All rights reserved.</span><span>Discover · Compare · Shop</span></div></footer>
+<script>
+/* PRODUCT SETUP:
+   Add approved affiliate URLs in amazonUrl, flipkartUrl and meeshoUrl.
+   Add image URLs only when you have permission to use those images.
+   Keep a store URL empty ("") if you do not have an approved link yet.
+*/
+const categories=[
+ ["All","Everything in one place"],["Fashion","Clothing & style"],["Electronics","Gadgets & tech"],["Home & Kitchen","For your home"],["Beauty","Care & grooming"],["Accessories","Everyday extras"],["Sports","Fitness & outdoors"],["Books","Read & learn"],["Toys","Play & hobbies"],["Grocery","Daily essentials"]
+];
+const products=[
+ {name:"Classic Everyday T-Shirt",category:"Fashion",description:"A versatile basic for casual everyday outfits.",price:"Check store price",amazonUrl:"",flipkartUrl:"",meeshoUrl:"",imageUrl:""},
+ {name:"Minimal Wrist Watch",category:"Accessories",description:"A simple accessory to complete your everyday look.",price:"Check store price",amazonUrl:"",flipkartUrl:"",meeshoUrl:"",imageUrl:""},
+ {name:"Wireless Bluetooth Earbuds",category:"Electronics",description:"Compact audio companion for music and calls.",price:"Check store price",amazonUrl:"",flipkartUrl:"",meeshoUrl:"",imageUrl:""},
+ {name:"LED Desk Lamp",category:"Home & Kitchen",description:"A practical lighting option for your desk or bedside.",price:"Check store price",amazonUrl:"",flipkartUrl:"",meeshoUrl:"",imageUrl:""},
+ {name:"Daily Skin Care Kit",category:"Beauty",description:"An everyday personal-care pick.",price:"Check store price",amazonUrl:"",flipkartUrl:"",meeshoUrl:"",imageUrl:""},
+ {name:"Travel Tote Bag",category:"Fashion",description:"A handy carry-all for errands and travel.",price:"Check store price",amazonUrl:"",flipkartUrl:"",meeshoUrl:"",imageUrl:""},
+ {name:"Insulated Water Bottle",category:"Sports",description:"A reusable bottle for work, travel and workouts.",price:"Check store price",amazonUrl:"",flipkartUrl:"",meeshoUrl:"",imageUrl:""},
+ {name:"Kitchen Storage Set",category:"Home & Kitchen",description:"Simple storage helpers to keep your kitchen organised.",price:"Check store price",amazonUrl:"",flipkartUrl:"",meeshoUrl:"",imageUrl:""},
+ {name:"Phone Stand",category:"Electronics",description:"A compact stand for hands-free viewing.",price:"Check store price",amazonUrl:"",flipkartUrl:"",meeshoUrl:"",imageUrl:""},
+ {name:"Study Notebook Set",category:"Books",description:"Everyday notebooks for notes, plans and ideas.",price:"Check store price",amazonUrl:"",flipkartUrl:"",meeshoUrl:"",imageUrl:""},
+ {name:"Fitness Resistance Bands",category:"Sports",description:"A versatile option for home exercise routines.",price:"Check store price",amazonUrl:"",flipkartUrl:"",meeshoUrl:"",imageUrl:""},
+ {name:"Creative Building Toy",category:"Toys",description:"A fun gift idea for play and creativity.",price:"Check store price",amazonUrl:"",flipkartUrl:"",meeshoUrl:"",imageUrl:""}
+];
+let selected="All";
+const grid=document.getElementById("grid"), filters=document.getElementById("filters");
+function safeLink(url,label){return url?`<a class="store" href="${url}" target="_blank" rel="sponsored noopener">${label} ↗</a>`:`<span class="store disabled" title="Add your approved affiliate link first">${label}</span>`}
+function render(){
+ const q=document.getElementById("search").value.toLowerCase();
+ let list=products.filter(p=>(selected==="All"||p.category===selected)&&(p.name+" "+p.category+" "+p.description).toLowerCase().includes(q));
+ if(document.getElementById("sort").value==="name")list.sort((a,b)=>a.name.localeCompare(b.name));
+ grid.innerHTML=list.length?list.map(p=>`<article class="card"><div class="photo">${p.imageUrl?`<img src="${p.imageUrl}" alt="${p.name}">`:`<em>${p.category.toUpperCase()}<br>ADD PRODUCT IMAGE</em>`}</div><div class="info"><div class="label">${p.category}</div><h3>${p.name}</h3><p>${p.description}</p><div class="price">${p.price}</div><div class="stores">${safeLink(p.amazonUrl,"Amazon")}${safeLink(p.flipkartUrl,"Flipkart")}${safeLink(p.meeshoUrl,"Meesho")}</div></div></article>`).join(""):'<div class="empty">No products found. Try a different search or category.</div>';
+}
+function setCategory(c){selected=c;document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b.dataset.cat===c));document.querySelectorAll(".category").forEach(b=>b.classList.toggle("active",b.dataset.cat===c));render()}
+categories.forEach(([name,desc])=>{const b=document.createElement("button");b.className="category"+(name==="All"?" active":"");b.dataset.cat=name;b.innerHTML=`<b>${name==="All"?"All Categories":name}</b><span>${desc}</span>`;b.onclick=()=>{setCategory(name);document.getElementById("products").scrollIntoView({behavior:"smooth"})};document.getElementById("categoryTiles").appendChild(b);
+const f=document.createElement("button");f.className="filter"+(name==="All"?" active":"");f.dataset.cat=name;f.textContent=name.toUpperCase();f.onclick=()=>setCategory(name);filters.appendChild(f)});
+document.getElementById("search").addEventListener("input",render);document.getElementById("sort").addEventListener("change",render);document.getElementById("menu").onclick=()=>document.getElementById("nav").classList.toggle("open");document.getElementById("year").textContent=new Date().getFullYear();render();
+</script>
+</body></html>
